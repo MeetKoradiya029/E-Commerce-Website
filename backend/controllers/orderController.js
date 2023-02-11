@@ -49,12 +49,13 @@ exports.getAllOrders = catchAsync(async (req, res, next) => {
   });
 });
 
-//get Single Order
+//get Single Order--admin
 exports.getSingleOrder = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id).populate(
     "user",
     "name email"
   );
+  console.log("single order : "+ order)
 
   if(!order){
     return next(new ErrorHandler("Order Not Found with this Id", 404))
@@ -78,7 +79,7 @@ exports.myOrders = catchAsync(async(req,res,next)=>{
 
 //update Order - Admin
 exports.updateOrder = catchAsync(async(req,res,next)=>{
-  const order = await Order.find(req.params.id);
+  const order = await Order.findById(req.params.id);
 
   if(order.orderStatus === 'Delivered'){
     return next(new ErrorHandler("You have already delevered this order",400))

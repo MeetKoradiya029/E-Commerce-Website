@@ -8,6 +8,7 @@ const {
   deleteOrder,
 } = require("../controllers/orderController");
 const { isAuthenticated } = require("../middleware/isAuthanticated");
+const ErrorHandler = require("../utils/errorhandler");
 
 const router = express.Router();
 
